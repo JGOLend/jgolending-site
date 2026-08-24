@@ -218,12 +218,67 @@
     color: var(--jgo-text-faint);
   }
 
+  .hero-note-row{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: .85em;
+  }
+  .hero-note-row .hero-cta-note{ margin-top: 0; }
+  .hero-avatar{
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 12%;
+    flex: 0 0 auto;
+  }
+  .hero-photo{ display: none; }
+
   @media (min-width: 768px){
     .hero h1{ font-size: 2.6rem; }
     .hero .subhead{ font-size: 1.15rem; }
   }
+  @media (min-width: 860px){
+    .hero-grid{
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 48px;
+      align-items: center;
+    }
+    .hero-photo{
+      display: block;
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      object-position: 50% 15%;
+      border-radius: 12px;
+    }
+    .hero-avatar{ display: none; }
+  }
   @media (min-width: 1200px){
     .hero h1{ font-size: 3.1rem; }
+  }
+
+  /* ---------- Bottom CTA + sticky mobile bar ---------- */
+  .bottom-cta .btn-gold{ margin-top: .6em; }
+  .sticky-cta{
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 50;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(10,10,10,.92);
+    border-top: 1px solid var(--jgo-rule);
+    text-align: center;
+  }
+  .sticky-cta .btn-gold{
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  @media (min-width: 860px){
+    .sticky-cta{ display: none; }
   }
 
   /* ---------- Section 2 : Where's the line ---------- */
@@ -580,7 +635,7 @@
   <div class="noscript-banner">
     This page works best with JavaScript enabled, which the quiz needs to run.
     You can still enquire directly - email James at
-    <a href="mailto:%5Bclient%20to%20provide%20-%20contact%20email%5D"><!-- CLIENT TO PROVIDE: contact email -->[client to provide - contact email]</a>
+    <a href="mailto:james.obrien@jgolending.com.au">james.obrien@jgolending.com.au</a>
     with your project details.
   </div>
 </noscript>
@@ -597,17 +652,50 @@
 
   <!-- 1. Hero -->
   <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Commercial &amp; Development Finance</p>
+        <h1>The deals your bank stopped writing.</h1>
+        <p class="subhead">Development finance for 3 to 20+ lot townhouse projects, from a broker who has built 17 apartments himself.</p>
+        <ul class="qualifier-strip">
+          <li>$3m+</li>
+          <li>DA lodged or approved</li>
+          <li>Settling in 3 to 12 months</li>
+        </ul>
+        <a href="#quiz" class="btn-gold" id="hero-cta">Get Quote</a>
+        <div class="hero-note-row">
+          <img src="assets/james-obrien.jpg" alt="James O'Brien" class="hero-avatar" width="1067" height="1600">
+          <p class="hero-cta-note">Seven questions. About three minutes. Answered by James, not a call centre.</p>
+        </div>
+      </div>
+      <img src="assets/james-obrien.jpg" alt="James O'Brien, director of JGO Lending" class="hero-photo" width="1067" height="1600">
+    </div>
+  </section>
+
+  <!-- 8. The quiz - moved directly under the hero so paid traffic reaches it without scrolling the full argument -->
+  <section id="quiz">
+    <div class="quiz-shell">
+      <h2 class="visually-hidden">Get your quote</h2>
+      <div class="quiz-progress-wrap">
+        <div class="quiz-progress-label" id="quiz-progress-label" aria-live="polite">Question 1 of 7</div>
+        <div class="quiz-progress-track">
+          <div class="quiz-progress-bar" id="quiz-progress-bar" style="width: 12.5%;"></div>
+        </div>
+      </div>
+
+      <div id="quiz-app"></div>
+    </div>
+  </section>
+
+  <!-- 9. What happens next -->
+  <section id="what-happens-next">
     <div class="wrap">
-      <p class="eyebrow">Commercial &amp; Development Finance</p>
-      <h1>The deals your bank stopped writing.</h1>
-      <p class="subhead">Development finance for 3 to 20+ lot townhouse projects, from a broker who has built 17 apartments himself.</p>
-      <ul class="qualifier-strip">
-        <li>$3m+</li>
-        <li>DA lodged or approved</li>
-        <li>Settling in 3 to 12 months</li>
+      <h2>A conversation, not an application.</h2>
+      <ul class="next-list">
+        <li>The answers go straight to James, not a call centre.</li>
+        <li>He comes back with where the deal fits and what it would take.</li>
+        <li>If the honest answer is no, you get it fast and it costs nothing.</li>
       </ul>
-      <a href="#quiz" class="btn-gold" id="hero-cta">Get Quote</a>
-      <p class="hero-cta-note">Seven questions. About three minutes. Answered by James, not a call centre.</p>
     </div>
   </section>
 
@@ -739,34 +827,21 @@
     </div>
   </section>
 
-  <!-- 8. The quiz -->
-  <section id="quiz">
-    <div class="quiz-shell">
-      <h2 class="visually-hidden">Get your quote</h2>
-      <div class="quiz-progress-wrap">
-        <div class="quiz-progress-label" id="quiz-progress-label" aria-live="polite">Question 1 of 7</div>
-        <div class="quiz-progress-track">
-          <div class="quiz-progress-bar" id="quiz-progress-bar" style="width: 12.5%;"></div>
-        </div>
-      </div>
-
-      <div id="quiz-app"></div>
-    </div>
-  </section>
-
-  <!-- 9. What happens next -->
-  <section id="what-happens-next">
+  <!-- Bottom CTA - the quiz itself sits directly under the hero -->
+  <section class="bottom-cta">
     <div class="wrap">
-      <h2>A conversation, not an application.</h2>
-      <ul class="next-list">
-        <li>The answers go straight to James, not a call centre.</li>
-        <li>He comes back with where the deal fits and what it would take.</li>
-        <li>If the honest answer is no, you get it fast and it costs nothing.</li>
-      </ul>
+      <h2>Seven questions. About three minutes.</h2>
+      <p>Answered by James, not a call centre.</p>
+      <a href="#quiz" class="btn-gold">Get Quote</a>
     </div>
   </section>
 
 </main>
+
+<!-- Sticky mobile CTA - hidden while the quiz is on screen and after submission -->
+<div class="sticky-cta" id="sticky-cta" hidden>
+  <a href="#quiz" class="btn-gold">Get Quote</a>
+</div>
 
 <!-- 10. Footer -->
 <footer class="site-footer">
@@ -792,7 +867,7 @@
      Configuration - client-supplied placeholders
      ============================================================ */
   var FORM_ENDPOINT = "[client to provide - form service endpoint]";
-  var CONTACT_EMAIL = "[client to provide - contact email]";
+  var CONTACT_EMAIL = "james.obrien@jgolending.com.au";
   // META_PIXEL_ID is declared in the <head> pixel block above.
 
   /* ============================================================
@@ -1190,6 +1265,12 @@
     progressLabel.textContent = 'Complete';
     progressBar.style.width = '100%';
 
+    var stickyBarDone = document.getElementById('sticky-cta');
+    if (stickyBarDone){
+      stickyBarDone.dataset.done = '1';
+      stickyBarDone.hidden = true;
+    }
+
     appEl.querySelector('h2').setAttribute('tabindex', '-1');
     appEl.querySelector('h2').focus();
 
@@ -1240,6 +1321,21 @@
         quizSection.scrollIntoView({ behavior: 'auto', block: 'start' });
       }
     }, 0);
+  }
+
+  // Sticky mobile CTA: visible only while the quiz is off screen, and
+  // never again after a successful submission.
+  var stickyCta = document.getElementById('sticky-cta');
+  var stickyTarget = document.getElementById('quiz');
+  if (stickyCta && stickyTarget && 'IntersectionObserver' in window){
+    var stickyObserver = new IntersectionObserver(function(entries){
+      if (stickyCta.dataset.done === '1'){
+        stickyCta.hidden = true;
+        return;
+      }
+      stickyCta.hidden = entries[0].isIntersecting;
+    }, { threshold: 0.1 });
+    stickyObserver.observe(stickyTarget);
   }
 
 })();
