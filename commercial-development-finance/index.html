@@ -282,6 +282,29 @@
     .hero h1{ font-size: 3.1rem; }
   }
 
+  /* ---------- Testimonial ---------- */
+  .testimonial-quote{
+    margin: 0;
+    padding-left: 18px;
+    border-left: 3px solid var(--jgo-gold-accent);
+  }
+  .testimonial-quote p{
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--jgo-text);
+    line-height: 1.55;
+  }
+  .testimonial-source{
+    font-size: .82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--jgo-text-muted);
+  }
+  @media (min-width: 768px){
+    .testimonial-quote p{ font-size: 1.2rem; }
+  }
+
   /* ---------- Bottom CTA + sticky mobile bar ---------- */
   .bottom-cta .btn-gold{ margin-top: .6em; }
   .sticky-cta{
@@ -689,6 +712,18 @@
       </div>
 
       <div id="quiz-app"></div>
+    </div>
+  </section>
+
+  <!-- Testimonial - genuine client review, reproduced verbatim (excerpt) from the
+       public Facebook page (James O'Brien - Mortgage Broker), June 2026.
+       Include in the compliance review pass. -->
+  <section class="testimonial">
+    <div class="wrap">
+      <blockquote class="testimonial-quote">
+        <p>"What really sets James apart is his personal experience in property development. Having someone who understands property from both the finance and development side gave us confidence that we were being offered finance that best suited our direct needs."</p>
+        <footer class="testimonial-source">Brendan Kent - Facebook review</footer>
+      </blockquote>
     </div>
   </section>
 
