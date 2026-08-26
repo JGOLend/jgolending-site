@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<!--
+  This is a synced copy so finance.jgolending.com.au/ serves the page at its
+  root. Source of truth is commercial-development-finance/index.html - edit
+  that file, then copy it here (and its assets/ folder) to keep both in
+  sync. Also reachable at jgolending.com.au/commercial-development-finance/
+  per the original brief.
+-->
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Development Finance | JGO Lending</title>
+<meta name="description" content="Development finance for 3 to 20+ lot townhouse and unit projects, from a broker who has built 17 apartments himself. A straight answer in about three minutes.">
+<meta name="robots" content="index, follow">
+
+<!-- Google Fonts: Montserrat -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<!-- ================= Meta Pixel base code =================
+     META_PIXEL_ID is a client-supplied placeholder. Until it is replaced,
+     fbq() is defined as a local stub so every tracked event below still
+     queues correctly (visible via window.fbq.queue), but the Meta Pixel
+     script is not loaded and no request reaches connect.facebook.net or
+     facebook.com. This keeps the page free of external requests beyond
+     Google Fonts until the client supplies a real pixel ID.
+     CLIENT TO PROVIDE: Meta Pixel ID -->
+<script>
+  window.fbq = window.fbq || function () {
+    (window.fbq.queue = window.fbq.queue || []).push(arguments);
+  };
+  window.fbq.queue = window.fbq.queue || [];
+  window.fbq.loaded = true;
+  window.fbq.version = '2.0';
+
+  var META_PIXEL_ID = "1427947952531869";
+  var PIXEL_CONFIGURED = META_PIXEL_ID.indexOf('[') !== 0;
+
+  if (PIXEL_CONFIGURED) {
+    !function (f, b, e, v, n, t, s) {
+      if (f._fbLoaded) return; f._fbLoaded = true;
+      n = f.fbq; t = b.createElement(e); t.async = true;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s);
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', META_PIXEL_ID);
+    fbq('track', 'PageView');
+  }
+  /* else: placeholder pixel ID. fbq() calls throughout the page still
+     queue locally (window.fbq.queue) for testing, but nothing is sent
+     anywhere. Replace META_PIXEL_ID above and this block activates with
+     no other code changes. */
+</script>
+<!-- Noscript fallback for the base pixel. This ID is static markup and
+     cannot read the META_PIXEL_ID JS constant above - if the pixel ID
+     ever changes, update it in both places. -->
+<noscript><img height="1" width="1" style="display:none" alt=""
+  src="https://www.facebook.com/tr?id=1427947952531869&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel base code -->
+
+<style>
+  :root{
+    /* Ground - dark band (header, hero, footer) over a warm-paper body.
+       The dark zones carry the brand's primary black-and-gold state and
+       the ad-to-page match; the body runs the brand's light variant. */
+    --jgo-black:      #0A0A0A;
+    --jgo-charcoal:   #282828;
+    --jgo-bg:         radial-gradient(130% 130% at 50% 40%, #0A0A0A 52%, #282828 100%);
+    --jgo-paper:      #F7F3EA;
+    --jgo-surface:    #FFFFFF;
+
+    /* Text - light-ground (paper) values are the page default; the
+       .dark band re-declares these tokens for its own subtree. */
+    --jgo-text:       #161310;
+    --jgo-text-muted: #6E655A;
+    --jgo-text-faint: rgba(22,19,16,.55);
+    --jgo-rule:       rgba(22,19,16,.16);
+
+    /* Gold - the signature. ALWAYS the metallic gradient, NEVER flat yellow.
+       --jgo-gold is the dark-ground signature gradient; --jgo-gold-on-light
+       is the deeper ramp that keeps contrast on paper. */
+    --jgo-gold-deep:  #9D722D;
+    --jgo-gold-mid:   #E4C377;
+    --jgo-gold-light: #FAF7C8;
+    --jgo-gold: linear-gradient(180deg,#FAF7C8 0%,#E4C377 34%,#9D722D 82%,#C49A55 100%);
+    --jgo-gold-on-light: linear-gradient(180deg,#B98E45 0%,#9D722D 70%,#7A5A23 100%);
+    --jgo-gold-clip: var(--jgo-gold-on-light);
+    --jgo-gold-accent: #B98E45;
+
+    /* Type */
+    --jgo-font: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+
+    --jgo-motion: 220ms;
+    --jgo-ease: cubic-bezier(.4,0,.2,1);
+    --content-max: 640px;
+    --content-max-wide: 1080px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    :root{ --jgo-motion: 0.01ms; }
+  }
+
+  *,*::before,*::after{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *,*::before,*::after{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+
+  body{
+    margin:0;
+    background-color: var(--jgo-paper);
+    color: var(--jgo-text);
+    font-family: var(--jgo-font);
+    font-weight: 400;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Dark band: header, hero, footer, sticky bar. Re-declares the text
+     tokens so every token-driven component inside just works. */
+  .dark{
+    --jgo-text:       #FFFFFF;
+    --jgo-text-muted: rgba(255,255,255,.70);
+    --jgo-text-faint: rgba(255,255,255,.45);
+    --jgo-rule:       rgba(255,255,255,.14);
+    --jgo-gold-clip:  var(--jgo-gold);
+    --jgo-gold-accent: var(--jgo-gold-mid);
+    background-color: var(--jgo-black);
+    color: var(--jgo-text);
+  }
+
+  img{ max-width:100%; display:block; }
+
+  a{ color: var(--jgo-text); }
+
+  h1,h2,h3{ font-weight: 800; line-height: 1.15; margin: 0 0 .5em; }
+  p{ margin: 0 0 1em; color: var(--jgo-text-muted); }
+
+  .gold-text{
+    background-image: var(--jgo-gold-clip);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .eyebrow{
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--jgo-text-muted);
+    margin: 0 0 .75em;
+  }
+
+  .wrap{
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .wrap-wide{
+    max-width: var(--content-max-wide);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  section{
+    padding: 44px 0;
+    border-bottom: 1px solid var(--jgo-rule);
+  }
+  section:last-of-type{ border-bottom: none; }
+
+  /* ---------- Header ---------- */
+  header.site-header{
+    padding: 16px 20px;
+  }
+  header.site-header .wrap-wide{
+    display:flex;
+    align-items:center;
+  }
+  .logo-link{ display:inline-flex; }
+  .logo-img{
+    height: 40px;
+    width: auto;
+  }
+  @media (min-width: 768px){
+    .logo-img{ height: 48px; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding-top: 20px;
+    padding-bottom: 32px;
+  }
+  .hero h1{
+    font-size: 1.7rem;
+    letter-spacing: -.01em;
+  }
+  .hero .subhead{
+    font-size: 1rem;
+    color: var(--jgo-text-muted);
+    margin-bottom: 1.1em;
+  }
+  .qualifier-strip{
+    display:flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 1em 0 1.4em;
+    padding: 0;
+    list-style: none;
+  }
+  .qualifier-strip li{
+    font-size: .85rem;
+    font-weight: 700;
+    color: var(--jgo-text);
+    padding: 8px 12px;
+    border: 1px solid var(--jgo-rule);
+    border-radius: 6px;
+    width: fit-content;
+  }
+  @media (min-width: 560px){
+    .qualifier-strip{ flex-direction: row; flex-wrap: wrap; }
+  }
+
+  .btn-gold{
+    display: inline-block;
+    background-image: var(--jgo-gold);
+    color: #1a1200;
+    font-family: var(--jgo-font);
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: .02em;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    padding: 15px 28px;
+    cursor: pointer;
+    text-align: center;
+  }
+  .btn-gold:hover{ filter: brightness(1.06); }
+  .btn-gold:focus-visible{
+    outline: 3px solid var(--jgo-text);
+    outline-offset: 3px;
+  }
+
+  .hero-cta-note{
+    margin-top: .85em;
+    font-size: .8rem;
+    color: var(--jgo-text-faint);
+  }
+
+  .hero-note-row{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: .85em;
+  }
+  .hero-note-row .hero-cta-note{ margin-top: 0; }
+  .hero-avatar{
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 12%;
+    flex: 0 0 auto;
+  }
+  .hero-photo{ display: none; }
+
+  @media (min-width: 768px){
+    .hero h1{ font-size: 2.6rem; }
+    .hero .subhead{ font-size: 1.15rem; }
+  }
+  @media (min-width: 860px){
+    .hero-grid{
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 48px;
+      align-items: center;
+    }
+    .hero-photo{
+      display: block;
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      object-position: 50% 15%;
+      border-radius: 12px;
+    }
+    .hero-avatar{ display: none; }
+  }
+  @media (min-width: 1200px){
+    .hero h1{ font-size: 3.1rem; }
+  }
+
+  /* ---------- Testimonial ---------- */
+  .testimonial-quote{
+    margin: 0;
+    padding-left: 18px;
+    border-left: 3px solid var(--jgo-gold-accent);
+  }
+  .testimonial-quote p{
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--jgo-text);
+    line-height: 1.55;
+  }
+  .testimonial-source{
+    font-size: .82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--jgo-text-muted);
+  }
+  @media (min-width: 768px){
+    .testimonial-quote p{ font-size: 1.2rem; }
+  }
+
+  /* ---------- Bottom CTA + sticky mobile bar ---------- */
+  .bottom-cta .btn-gold{ margin-top: .6em; }
+  .sticky-cta{
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 50;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(10,10,10,.92);
+    border-top: 1px solid var(--jgo-rule);
+    text-align: center;
+  }
+  .sticky-cta .btn-gold{
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  @media (min-width: 860px){
+    .sticky-cta{ display: none; }
+  }
+
+  /* ---------- Section 2 : Where's the line ---------- */
+  h2{ font-size: 1.5rem; }
+  @media (min-width: 768px){ h2{ font-size: 1.9rem; } }
+
+  .close-line{
+    font-weight: 700;
+    color: var(--jgo-text);
+    margin-top: 1.2em;
+  }
+
+  /* ---------- Section 3 : What the stall costs ---------- */
+  .cost-list{
+    list-style:none;
+    margin: 1.2em 0;
+    padding: 0;
+  }
+  .cost-list li{
+    padding: 14px 0;
+    border-top: 1px solid var(--jgo-gold-accent);
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+  .cost-list li:last-child{
+    border-bottom: 1px solid var(--jgo-gold-accent);
+  }
+
+  /* ---------- Section 4 : Who you're dealing with ---------- */
+  .credentials{
+    list-style:none;
+    margin: 1.4em 0;
+    padding: 0;
+    display: grid;
+    gap: 18px;
+  }
+  .credentials li h3{
+    font-size: 1.05rem;
+    font-weight: 800;
+    margin: 0 0 .3em;
+  }
+  .credentials li p{ margin:0; font-size: .95rem; }
+
+  .section-photo{
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+    margin: 0 0 1.6em;
+  }
+
+  /* ---------- Section 5 : Who this is for ---------- */
+  .fit-grid{
+    display:grid;
+    gap: 24px;
+    margin-top: 1.4em;
+  }
+  @media (min-width: 700px){
+    .fit-grid{ grid-template-columns: 1fr 1fr; }
+  }
+  .fit-block{
+    border: 1px solid var(--jgo-rule);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .fit-block h3{
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin: 0 0 .8em;
+  }
+  .fit-block ul{
+    margin:0;
+    padding-left: 1.1em;
+    color: var(--jgo-text-muted);
+  }
+  .fit-block li{ margin-bottom: .5em; }
+
+  /* ---------- Section 6 : Ask about these first ---------- */
+  .rate-list{
+    counter-reset: rate;
+    list-style:none;
+    margin: 1.4em 0;
+    padding: 0;
+  }
+  .rate-list li{
+    counter-increment: rate;
+    display:flex;
+    gap: 14px;
+    align-items:baseline;
+    padding: 10px 0;
+    font-size: 1rem;
+    font-weight: 600;
+    border-top: 1px solid var(--jgo-rule);
+  }
+  .rate-list li:last-child{ border-bottom: 1px solid var(--jgo-rule); }
+  .rate-list li::before{
+    content: counter(rate);
+    font-weight: 800;
+    color: var(--jgo-text-faint);
+    min-width: 1.2em;
+  }
+  .rate-list li.rate-final{
+    font-size: 1.2rem;
+    font-weight: 800;
+  }
+
+  /* ---------- Section 7 : How credit reads your deal ---------- */
+  .credit-steps{
+    list-style:none;
+    margin: 1.4em 0;
+    padding:0;
+    display:grid;
+    gap: 20px;
+  }
+  @media (min-width: 700px){
+    .credit-steps{ grid-template-columns: 1fr 1fr; }
+  }
+  .credit-steps h3{
+    font-size: 1.02rem;
+    font-weight: 800;
+    margin: 0 0 .3em;
+  }
+  .credit-steps p{ margin:0; font-size: .95rem; }
+
+  /* ---------- Quiz ---------- */
+  #quiz{
+    scroll-margin-top: 12px;
+    background: var(--jgo-surface);
+    box-shadow: 0 1px 3px rgba(22,19,16,.06);
+  }
+  .quiz-shell{
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .quiz-progress-wrap{
+    margin-bottom: 1.4em;
+  }
+  .quiz-progress-label{
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--jgo-text-faint);
+    margin-bottom: .5em;
+  }
+  .quiz-progress-track{
+    height: 4px;
+    background: var(--jgo-rule);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .quiz-progress-bar{
+    height: 100%;
+    background-image: var(--jgo-gold);
+    transition: width var(--jgo-motion) var(--jgo-ease);
+  }
+
+  .quiz-step{ }
+  .quiz-question{
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin: 0 0 1.1em;
+    border:0; padding:0;
+  }
+  .quiz-options{
+    list-style:none;
+    margin:0 0 1.2em;
+    padding:0;
+    display:grid;
+    gap: 10px;
+  }
+  .quiz-option{
+    width:100%;
+    text-align:left;
+    background: var(--jgo-paper);
+    color: var(--jgo-text);
+    border: 1px solid var(--jgo-rule);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-family: var(--jgo-font);
+    font-size: .98rem;
+    font-weight: 600;
+    cursor:pointer;
+    transition: border-color var(--jgo-motion) var(--jgo-ease), background var(--jgo-motion) var(--jgo-ease);
+  }
+  .quiz-option:hover{ border-color: var(--jgo-gold-mid); }
+  .quiz-option:focus-visible{
+    outline: 3px solid var(--jgo-gold-accent);
+    outline-offset: 2px;
+  }
+  .quiz-option[aria-pressed="true"]{
+    border-color: var(--jgo-gold-accent);
+    background: rgba(228,195,119,.10);
+  }
+
+  .quiz-nav{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .btn-back{
+    background:none;
+    border: 1px solid var(--jgo-rule);
+    color: var(--jgo-text-muted);
+    font-family: var(--jgo-font);
+    font-weight: 700;
+    font-size: .85rem;
+    border-radius: 8px;
+    padding: 10px 16px;
+    cursor:pointer;
+  }
+  .btn-back:focus-visible{ outline: 3px solid var(--jgo-gold-mid); outline-offset: 2px; }
+  .btn-back:hover{ color: var(--jgo-text); border-color: var(--jgo-text-faint); }
+
+  .quiz-field{ margin-bottom: 1.1em; }
+  .quiz-field label{
+    display:block;
+    font-size: .82rem;
+    font-weight: 700;
+    color: var(--jgo-text-muted);
+    margin-bottom: .4em;
+  }
+  .quiz-field input,
+  .quiz-field textarea{
+    width:100%;
+    background: var(--jgo-paper);
+    border: 1px solid var(--jgo-rule);
+    color: var(--jgo-text);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-family: var(--jgo-font);
+    font-size: 1rem;
+  }
+  .quiz-field input:focus-visible,
+  .quiz-field textarea:focus-visible{
+    outline: 3px solid var(--jgo-gold-mid);
+    outline-offset: 1px;
+  }
+  .quiz-field textarea{ min-height: 90px; resize: vertical; }
+  .field-error{
+    color: #FF9B9B;
+    font-size: .82rem;
+    margin-top: .4em;
+    display:none;
+  }
+  .field-error.show{ display:block; }
+
+  .quiz-submit-error{
+    border: 1px solid rgba(255,120,120,.4);
+    background: rgba(255,120,120,.08);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 1em;
+    display:none;
+  }
+  .quiz-submit-error.show{ display:block; }
+  .quiz-submit-error a{ color: var(--jgo-gold-mid); }
+
+  .quiz-success h2{ font-size: 1.6rem; }
+  .quiz-success p{ font-size: 1.02rem; }
+
+  .quiz-loading{
+    font-size: .85rem;
+    color: var(--jgo-text-faint);
+    margin-top: .8em;
+    display:none;
+  }
+  .quiz-loading.show{ display:block; }
+
+  /* ---------- Section 9 : What happens next ---------- */
+  .next-list{
+    list-style:none;
+    margin: 1.2em 0 0;
+    padding:0;
+    display:grid;
+    gap: 14px;
+  }
+  .next-list li{
+    padding-left: 1.6em;
+    position:relative;
+    color: var(--jgo-text-muted);
+  }
+  .next-list li::before{
+    content: "";
+    position:absolute;
+    left:0; top:.5em;
+    width:6px; height:6px;
+    border-radius:50%;
+    background-image: var(--jgo-gold);
+  }
+
+  /* ---------- Footer ---------- */
+  footer.site-footer{
+    padding: 40px 0 60px;
+    font-size: .82rem;
+    color: var(--jgo-text-faint);
+  }
+  footer.site-footer .logo-img{ height: 32px; margin-bottom: 16px; }
+  footer.site-footer p{ color: var(--jgo-text-faint); margin: 0 0 .8em; font-size: .8rem; }
+  footer.site-footer .footer-tagline{
+    color: var(--jgo-text-muted);
+    font-weight: 700;
+    font-size: .85rem;
+  }
+  footer.site-footer a{ color: var(--jgo-text-muted); text-decoration: underline; }
+  .footer-legal{
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--jgo-rule);
+  }
+  .placeholder-note{
+    color: var(--jgo-text-faint);
+    font-style: italic;
+  }
+
+  .visually-hidden{
+    position:absolute; width:1px; height:1px; margin:-1px; padding:0;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+
+  .noscript-banner{
+    background: #3a1f00;
+    color:#fff;
+    padding: 14px 20px;
+    text-align:center;
+    font-size:.9rem;
+  }
+  .noscript-banner a{ color: var(--jgo-gold-mid); }
+</style>
+</head>
+<body>
+
+<noscript>
+  <div class="noscript-banner">
+    This page works best with JavaScript enabled, which the quiz needs to run.
+    You can still enquire directly - email James at
+    <a href="mailto:james.obrien@jgolending.com.au">james.obrien@jgolending.com.au</a>
+    with your project details.
+  </div>
+</noscript>
+
+<header class="site-header dark">
+  <div class="wrap-wide">
+    <a href="#top" class="logo-link" aria-label="JGO Lending, home">
+      <img src="assets/jgo-logo.png" alt="JGO Lending" class="logo-img" width="418" height="128">
+    </a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 1. Hero -->
+  <section class="hero dark">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Development Finance</p>
+        <h1>The deals your bank stopped writing.</h1>
+        <p class="subhead">Development finance for 3 to 20+ lot townhouse projects, from a broker who has built 17 apartments himself.</p>
+        <ul class="qualifier-strip">
+          <li>$3m+</li>
+          <li>DA lodged or approved</li>
+          <li>Settling in 3 to 12 months</li>
+        </ul>
+        <a href="#quiz" class="btn-gold" id="hero-cta">Get Quote</a>
+        <div class="hero-note-row">
+          <img src="assets/james-obrien.jpg" alt="James O'Brien" class="hero-avatar" width="1067" height="1600">
+          <p class="hero-cta-note">Seven questions. About three minutes. Answered by James, not a call centre.</p>
+        </div>
+      </div>
+      <img src="assets/james-obrien.jpg" alt="James O'Brien, director of JGO Lending" class="hero-photo" width="1067" height="1600">
+    </div>
+  </section>
+
+  <!-- 8. The quiz - moved directly under the hero so paid traffic reaches it without scrolling the full argument -->
+  <section id="quiz">
+    <div class="quiz-shell">
+      <h2 class="visually-hidden">Get your quote</h2>
+      <div class="quiz-progress-wrap">
+        <div class="quiz-progress-label" id="quiz-progress-label" aria-live="polite">Question 1 of 7</div>
+        <div class="quiz-progress-track">
+          <div class="quiz-progress-bar" id="quiz-progress-bar" style="width: 12.5%;"></div>
+        </div>
+      </div>
+
+      <div id="quiz-app"></div>
+    </div>
+  </section>
+
+  <!-- Testimonial - genuine client review, reproduced verbatim (excerpt) from the
+       public Facebook page (James O'Brien - Mortgage Broker), June 2026.
+       Include in the compliance review pass. -->
+  <section class="testimonial">
+    <div class="wrap">
+      <blockquote class="testimonial-quote">
+        <p>"What really sets James apart is his personal experience in property development. Having someone who understands property from both the finance and development side gave us confidence that we were being offered finance that best suited our direct needs."</p>
+        <footer class="testimonial-source">Brendan Kent - Facebook review</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- 9. What happens next -->
+  <section id="what-happens-next">
+    <div class="wrap">
+      <h2>A conversation, not an application.</h2>
+      <ul class="next-list">
+        <li>The answers go straight to James, not a call centre.</li>
+        <li>He comes back with where the deal fits and what it would take.</li>
+        <li>If the honest answer is no, you get it fast and it costs nothing.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 2. Where's the line -->
+  <section id="wheres-the-line">
+    <div class="wrap">
+      <!-- AI-generated placeholder image: replace with real project photography before ads run -->
+      <img src="assets/dev-aerial-construction.jpg" alt="Aerial view of a townhouse development at golden hour, completed units in front and timber frames going up behind" class="section-photo" width="1600" height="1073" loading="lazy">
+      <h2>Somewhere past the second or third lot, most banks tap out.</h2>
+      <p>Some lenders will write three or four townhouses under a standard residential policy, no questions asked.</p>
+      <p>Others stop counting at two, and anything past that gets pushed straight into commercial credit, with a different set of questions.</p>
+      <p>A few will go to five, then ask for pre-sales the moment a sixth lot is added to the plan.</p>
+      <p>The line is real. It is just drawn in a different place at every lender, and the expensive way to find yours is to apply and wait for the answer.</p>
+      <p class="close-line">Knowing where each lender's line sits, before the file goes in, is the job.</p>
+    </div>
+  </section>
+
+  <!-- 3. What the stall costs -->
+  <section id="what-the-stall-costs">
+    <div class="wrap">
+      <h2>Waiting is a line on the feasibility. It just never gets written down.</h2>
+      <ul class="cost-list">
+        <li>Holding costs</li>
+        <li>Builder's quote, expiring</li>
+        <li>Construction costs, rising</li>
+        <li class="gold-text">Margin, shrinking</li>
+      </ul>
+      <p>Finance delay is a cost that never appears as a line item, and it always comes out of the margin.</p>
+    </div>
+  </section>
+
+  <!-- 4. Who you're dealing with -->
+  <section id="who-youre-dealing-with">
+    <div class="wrap-wide">
+      <div>
+        <div>
+          <h2>The broker who has built what you're building.</h2>
+          <ul class="credentials">
+            <li>
+              <h3>17 apartments built</h3>
+              <p>As the developer, not the broker. He has carried his own DAs through council.</p>
+            </li>
+            <li>
+              <h3>Ex-Westpac</h3>
+              <p>Experience on the lender's side of the desk, which is where he learned how credit actually reads a file.</p>
+            </li>
+            <li>
+              <h3>Bachelor of Laws</h3>
+              <p>Contracts, structures and the fine print of a facility.</p>
+            </li>
+            <li>
+              <h3>Australian Army veteran</h3>
+              <p>Afghanistan service. Straight answers are the habit.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Who this is for -->
+  <section id="who-this-is-for">
+    <div class="wrap-wide">
+      <h2>This is built for a specific deal.</h2>
+      <div class="fit-grid">
+        <div class="fit-block">
+          <h3>A good fit</h3>
+          <ul>
+            <li>3 to 20+ lot townhouse and unit developments</li>
+            <li>$3m and above</li>
+            <li>DA lodged or approved</li>
+            <li>Settling in 3 to 12 months</li>
+            <li>Australia wide</li>
+          </ul>
+        </div>
+        <div class="fit-block">
+          <h3>Not the right call yet</h3>
+          <ul>
+            <li>Deals under $3m</li>
+            <li>Sites with no DA lodged</li>
+            <li>Rate enquiries without a specific project</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:1.4em;">If that's you, say so in the quiz anyway and you'll get a straight answer about what would need to change.</p>
+    </div>
+  </section>
+
+  <!-- 6. Ask about these first -->
+  <section id="ask-about-these-first">
+    <div class="wrap">
+      <h2>Here for the best rate? Ask about these first.</h2>
+      <ol class="rate-list">
+        <li>How much equity they require</li>
+        <li>How much leverage they'll provide</li>
+        <li>What pre-sales they require</li>
+        <li>Whether they'll accept your builder and experience</li>
+        <li class="rate-final gold-text">Then rate</li>
+      </ol>
+      <p>Rate is real money, and it is still the wrong first question, because the sharpest rate in the market funds nothing if the first four are wrong.</p>
+    </div>
+  </section>
+
+  <!-- 7. How credit reads your deal -->
+  <section id="how-credit-reads-your-deal">
+    <div class="wrap-wide">
+      <!-- AI-generated placeholder image: replace with real project photography before ads run -->
+      <img src="assets/dev-townhouses-dusk.jpg" alt="A completed row of contemporary townhouses at dusk, interior lights on" class="section-photo" width="1600" height="1073" loading="lazy">
+      <h2>Six townhouses, DA approved. Here's what credit sees.</h2>
+      <ul class="credit-steps">
+        <li>
+          <h3>1 Equity &amp; leverage</h3>
+          <p>How much of the project cost you're funding yourself, and how much of the site's value the lender can rely on.</p>
+        </li>
+        <li>
+          <h3>2 Pre-sale cover</h3>
+          <p>Whether contracted sales cover enough of the debt to make the construction facility serviceable.</p>
+        </li>
+        <li>
+          <h3>3 Builder &amp; delivery</h3>
+          <p>Whether the builder and the building contract can actually deliver the project on time and on budget.</p>
+        </li>
+        <li>
+          <h3>4 Exit</h3>
+          <p>How the debt gets repaid, whether that's sale, refinance, or hold.</p>
+        </li>
+      </ul>
+      <p style="margin-top:1em;">A good project can still get the wrong answer when the file doesn't tell this story clearly.</p>
+    </div>
+  </section>
+
+  <!-- Bottom CTA - the quiz itself sits directly under the hero -->
+  <section class="bottom-cta">
+    <div class="wrap">
+      <h2>Seven questions. About three minutes.</h2>
+      <p>Answered by James, not a call centre.</p>
+      <a href="#quiz" class="btn-gold">Get Quote</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- Sticky mobile CTA - hidden while the quiz is on screen and after submission -->
+<div class="sticky-cta dark" id="sticky-cta" hidden>
+  <a href="#quiz" class="btn-gold">Get Quote</a>
+</div>
+
+<!-- 10. Footer -->
+<footer class="site-footer dark">
+  <div class="wrap-wide">
+    <img src="assets/jgo-logo.png" alt="JGO Lending" class="logo-img" width="418" height="128">
+    <p class="footer-tagline">Development Finance</p>
+    <p>Gold Coast, Queensland.</p>
+    <p><a href="tel:+61431294276">0431 294 276</a></p>
+
+    <div class="footer-legal">
+      <p>James O'Brien is a Credit Representative (Credit Representative Number 578547) of Australian Finance Group Ltd, Australian Credit Licence 389087.</p>
+      <!-- DRAFT compliance wording - pending compliance review sign-off, not yet approved -->
+      <p>The information on this page is general in nature, does not take your objectives, financial situation or needs into account, and is not an offer of finance. All finance applications are subject to the relevant lender's credit assessment and approval, and to the lender's terms, conditions, fees and charges.</p>
+      <p><a href="https://www.afgonline.com.au/privacy-policy/" rel="noopener">Privacy Policy</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============================================================
+     Configuration - client-supplied placeholders
+     ============================================================ */
+  var FORM_ENDPOINT = "https://api.web3forms.com/submit";
+  var WEB3FORMS_ACCESS_KEY = "6c66eaa6-dfec-4394-a07e-a9e6f0b2f736";
+  var CONTACT_EMAIL = "james.obrien@jgolending.com.au";
+  // META_PIXEL_ID is declared in the <head> pixel block above.
+
+  /* ============================================================
+     UTM / attribution capture
+     Read from the query string on load and persist to sessionStorage
+     so the values survive the multi-step quiz. Never overwrite a
+     stored value with an empty one on a later load.
+     ============================================================ */
+  var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid'];
+  var UTM_STORAGE_KEY = 'jgo_utm_v1';
+
+  function captureUTM(){
+    var stored = {};
+    try{
+      var raw = sessionStorage.getItem(UTM_STORAGE_KEY);
+      if (raw) stored = JSON.parse(raw);
+    }catch(e){}
+
+    var params = new URLSearchParams(window.location.search);
+    UTM_KEYS.forEach(function(key){
+      var val = params.get(key);
+      if (val){ stored[key] = val; }
+    });
+
+    try{ sessionStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(stored)); }catch(e){}
+    return stored;
+  }
+
+  var utmData = captureUTM();
+
+  /* ============================================================
+     Quiz data + state
+     ============================================================ */
+  var QUESTIONS = [
+    { key: 'financing', text: 'What are you financing?', options: ['Townhouse development', 'Unit or apartment development', 'Land subdivision', 'Commercial property', 'Something else'] },
+    { key: 'amount',     text: 'How much do you need?', options: ['Under $3m', '$3m to $5m', '$5m to $10m', '$10m to $20m', 'Over $20m'] },
+    { key: 'da',         text: 'Is there a DA?', options: ['Approved', 'Lodged, awaiting decision', 'Not lodged yet'] },
+    { key: 'settle',     text: 'When do you need to settle?', options: ['Inside 3 months', '3 to 6 months', '6 to 12 months', 'More than 12 months away'] },
+    { key: 'experience', text: 'Have you done a development before?', options: ['This is my first', 'One or two', 'Several', 'I build for a living'] },
+    { key: 'location',   text: 'Where is the site?', options: ['South East QLD', 'Sydney or greater NSW', 'Victoria', 'WA', 'Somewhere else'] },
+    { key: 'builder',    text: 'Is a builder contracted?', options: ['Contracted', 'At tender', 'Not yet'] }
+  ];
+  var TOTAL_STEPS = QUESTIONS.length; // 7 select questions, contact is step 8
+
+  var ANSWERS_STORAGE_KEY = 'jgo_quiz_answers_v1';
+  var answers = {};
+  try{
+    var rawAnswers = sessionStorage.getItem(ANSWERS_STORAGE_KEY);
+    if (rawAnswers) answers = JSON.parse(rawAnswers);
+  }catch(e){}
+
+  var currentStep = 1; // 1..7 = select questions, 8 = contact
+  var quizStarted = false;
+  var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function saveAnswers(){
+    try{ sessionStorage.setItem(ANSWERS_STORAGE_KEY, JSON.stringify(answers)); }catch(e){}
+  }
+
+  var appEl = document.getElementById('quiz-app');
+  var progressLabel = document.getElementById('quiz-progress-label');
+  var progressBar = document.getElementById('quiz-progress-bar');
+
+  function updateProgress(){
+    if (currentStep <= TOTAL_STEPS){
+      progressLabel.textContent = 'Question ' + currentStep + ' of ' + TOTAL_STEPS;
+      progressBar.style.width = ((currentStep - 1) / TOTAL_STEPS * 100 + (100 / TOTAL_STEPS)) + '%';
+    } else {
+      progressLabel.textContent = 'Last step';
+      progressBar.style.width = '100%';
+    }
+  }
+
+  function escapeHtml(str){
+    return String(str).replace(/[&<>"']/g, function(c){
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+
+  /* ============================================================
+     Render: a single select question
+     ============================================================ */
+  function renderQuestionStep(stepIndex){
+    var q = QUESTIONS[stepIndex - 1];
+    var selected = answers[q.key];
+
+    var html = '';
+    html += '<div class="quiz-step">';
+    html += '<fieldset class="quiz-step-fieldset" style="border:0;padding:0;margin:0;">';
+    html += '<legend class="quiz-question">' + escapeHtml(q.text) + '</legend>';
+    html += '<ul class="quiz-options" role="list">';
+    q.options.forEach(function(opt, i){
+      var pressed = (selected === opt) ? 'true' : 'false';
+      html += '<li><button type="button" class="quiz-option" aria-pressed="' + pressed + '" data-value="' + escapeHtml(opt) + '" id="opt-' + stepIndex + '-' + i + '">' + escapeHtml(opt) + '</button></li>';
+    });
+    html += '</ul>';
+    html += '</fieldset>';
+    if (stepIndex > 1){
+      html += '<div class="quiz-nav"><button type="button" class="btn-back" id="quiz-back">Back</button></div>';
+    }
+    html += '</div>';
+
+    appEl.innerHTML = html;
+
+    var buttons = appEl.querySelectorAll('.quiz-option');
+    buttons.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        selectAnswer(q.key, btn.getAttribute('data-value'), stepIndex);
+      });
+    });
+
+    var backBtn = document.getElementById('quiz-back');
+    if (backBtn){
+      backBtn.addEventListener('click', function(){
+        goBack();
+      });
+    }
+
+    updateProgress();
+    focusFirstElement();
+  }
+
+  function focusFirstElement(){
+    var first = appEl.querySelector('.quiz-option, input, textarea');
+    if (first && document.activeElement !== document.body){
+      // Do not steal focus on initial render, only after navigation triggered by the user.
+    }
+  }
+
+  function selectAnswer(key, value, stepIndex){
+    answers[key] = value;
+    saveAnswers();
+
+    if (!quizStarted){
+      quizStarted = true;
+      fbq('trackCustom', 'QuizStart');
+    }
+    if (stepIndex > 1){
+      fbq('trackCustom', 'QuizStep', { step: stepIndex });
+    }
+
+    // Visual confirmation of the tap before advancing.
+    var btn = appEl.querySelector('.quiz-option[data-value="' + cssEscape(value) + '"]');
+    if (btn){ btn.setAttribute('aria-pressed', 'true'); }
+
+    var delay = reducedMotion ? 0 : 180;
+    window.setTimeout(function(){
+      currentStep = stepIndex + 1;
+      if (currentStep <= TOTAL_STEPS){
+        renderQuestionStep(currentStep);
+      } else {
+        renderContactStep();
+      }
+      scrollQuizIntoView();
+    }, delay);
+  }
+
+  function cssEscape(value){
+    // Minimal escape for use inside an attribute selector string.
+    return String(value).replace(/["\\]/g, '\\$&');
+  }
+
+  function goBack(){
+    if (currentStep > 8){ return; }
+    currentStep = currentStep - 1;
+    if (currentStep < 1){ currentStep = 1; }
+    if (currentStep <= TOTAL_STEPS){
+      renderQuestionStep(currentStep);
+    } else {
+      renderContactStep();
+    }
+    scrollQuizIntoView();
+  }
+
+  function scrollQuizIntoView(){
+    var quizSection = document.getElementById('quiz');
+    if (!quizSection) return;
+    var rect = quizSection.getBoundingClientRect();
+    if (rect.top < 0 || rect.top > 40){
+      quizSection.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
+    }
+  }
+
+  /* ============================================================
+     Render: contact step
+     ============================================================ */
+  function renderContactStep(){
+    currentStep = TOTAL_STEPS + 1; // 8
+
+    var name = answers.contactName || '';
+    var email = answers.contactEmail || '';
+    var phone = answers.contactPhone || '';
+    var notes = answers.contactNotes || '';
+
+    var html = '';
+    html += '<div class="quiz-step">';
+    html += '<h3 class="quiz-question" style="font-size:1.3rem;">Almost there. How should James reach you?</h3>';
+
+    html += '<div class="quiz-field">';
+    html += '<label for="qf-name">Full name</label>';
+    html += '<input type="text" id="qf-name" name="name" autocomplete="name" required value="' + escapeHtml(name) + '">';
+    html += '</div>';
+
+    html += '<div class="quiz-field">';
+    html += '<label for="qf-email">Email</label>';
+    html += '<input type="email" id="qf-email" name="email" autocomplete="email" inputmode="email" required value="' + escapeHtml(email) + '">';
+    html += '<div class="field-error" id="qf-email-error">Enter a valid email address.</div>';
+    html += '</div>';
+
+    html += '<div class="quiz-field">';
+    html += '<label for="qf-phone">Phone</label>';
+    html += '<input type="tel" id="qf-phone" name="phone" autocomplete="tel" inputmode="tel" required value="' + escapeHtml(phone) + '">';
+    html += '</div>';
+
+    html += '<div class="quiz-field">';
+    html += '<label for="qf-notes">Anything else about the deal? (optional)</label>';
+    html += '<textarea id="qf-notes" name="notes">' + escapeHtml(notes) + '</textarea>';
+    html += '</div>';
+
+    html += '<button type="button" class="btn-gold" id="qf-submit" style="width:100%;">Get Quote</button>';
+    html += '<div class="quiz-loading" id="qf-loading">Sending...</div>';
+    html += '<div class="quiz-submit-error" id="qf-submit-error"></div>';
+
+    html += '<div class="quiz-nav" style="margin-top:16px;"><button type="button" class="btn-back" id="quiz-back">Back</button></div>';
+    html += '</div>';
+
+    appEl.innerHTML = html;
+
+    document.getElementById('quiz-back').addEventListener('click', function(){
+      // Preserve whatever has been typed so far before navigating back.
+      persistContactFields();
+      goBack();
+    });
+
+    document.getElementById('qf-submit').addEventListener('click', handleSubmit);
+
+    updateProgress();
+  }
+
+  function persistContactFields(){
+    var nameEl = document.getElementById('qf-name');
+    var emailEl = document.getElementById('qf-email');
+    var phoneEl = document.getElementById('qf-phone');
+    var notesEl = document.getElementById('qf-notes');
+    if (nameEl) answers.contactName = nameEl.value;
+    if (emailEl) answers.contactEmail = emailEl.value;
+    if (phoneEl) answers.contactPhone = phoneEl.value;
+    if (notesEl) answers.contactNotes = notesEl.value;
+    saveAnswers();
+  }
+
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function handleSubmit(){
+    persistContactFields();
+
+    var nameEl = document.getElementById('qf-name');
+    var emailEl = document.getElementById('qf-email');
+    var phoneEl = document.getElementById('qf-phone');
+    var emailError = document.getElementById('qf-email-error');
+    var submitError = document.getElementById('qf-submit-error');
+
+    submitError.classList.remove('show');
+    submitError.innerHTML = '';
+
+    var valid = true;
+
+    if (!nameEl.value.trim()){
+      valid = false;
+      nameEl.setAttribute('aria-invalid', 'true');
+    } else {
+      nameEl.removeAttribute('aria-invalid');
+    }
+
+    if (!EMAIL_RE.test(emailEl.value.trim())){
+      valid = false;
+      emailError.classList.add('show');
+      emailEl.setAttribute('aria-invalid', 'true');
+    } else {
+      emailError.classList.remove('show');
+      emailEl.removeAttribute('aria-invalid');
+    }
+
+    if (!phoneEl.value.trim()){
+      valid = false;
+      phoneEl.setAttribute('aria-invalid', 'true');
+    } else {
+      phoneEl.removeAttribute('aria-invalid');
+    }
+
+    if (!valid){
+      if (emailError.classList.contains('show')){
+        emailEl.focus();
+      } else {
+        var firstInvalid = appEl.querySelector('[aria-invalid="true"]');
+        if (firstInvalid) firstInvalid.focus();
+      }
+      return;
+    }
+
+    submitQuiz();
+  }
+
+  function buildPayload(){
+    var amount = answers.amount || '';
+    var da = answers.da || '';
+    return {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: 'Development finance enquiry - ' + amount + ' - DA: ' + da,
+      from_name: 'JGO Development Finance quiz',
+      financing: answers.financing || '',
+      amount: amount,
+      da_status: da,
+      settle_timing: answers.settle || '',
+      experience: answers.experience || '',
+      site_location: answers.location || '',
+      builder_status: answers.builder || '',
+      name: answers.contactName || '',
+      email: answers.contactEmail || '',
+      phone: answers.contactPhone || '',
+      notes: answers.contactNotes || '',
+      utm_source: utmData.utm_source || '',
+      utm_medium: utmData.utm_medium || '',
+      utm_campaign: utmData.utm_campaign || '',
+      utm_content: utmData.utm_content || '',
+      utm_term: utmData.utm_term || '',
+      fbclid: utmData.fbclid || '',
+      page_url: window.location.href,
+      timestamp: new Date().toISOString()
+    };
+  }
+
+  function submitQuiz(){
+    var loadingEl = document.getElementById('qf-loading');
+    var submitBtn = document.getElementById('qf-submit');
+    var submitError = document.getElementById('qf-submit-error');
+
+    loadingEl.classList.add('show');
+    submitBtn.disabled = true;
+
+    var payload = buildPayload();
+
+    fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    }).then(function(response){
+      if (!response || !response.ok){
+        throw new Error('non-2xx response');
+      }
+      return response.json();
+    }).then(function(result){
+      loadingEl.classList.remove('show');
+      submitBtn.disabled = false;
+      if (result && result.success){
+        onSubmitSuccess(payload);
+      } else {
+        onSubmitFailure(payload);
+      }
+    }).catch(function(){
+      loadingEl.classList.remove('show');
+      submitBtn.disabled = false;
+      onSubmitFailure(payload);
+    });
+  }
+
+  function onSubmitSuccess(payload){
+    // ---- Meta conversion event: fire ONLY here, inside the success
+    // branch of the submission response. Never on button click, never
+    // on an earlier step. See brief section 6 for why: firing on click
+    // counts failed submissions, firing early counts abandons, and at
+    // 2-5 conversions per week this account cannot afford a polluted
+    // signal for the optimiser.
+    var qualified = payload.amount !== 'Under $3m';
+    // CAPI / eventID note: no Conversions API is in place yet. When it
+    // is added, generate a shared eventID here and pass it as the
+    // third argument to fbq() below, plus send the same eventID with
+    // the matching server-side event, to deduplicate browser + server
+    // events for the same submission.
+    if (qualified){
+      fbq('track', 'Lead', {
+        content_name: 'Commercial development finance quiz',
+        content_category: 'qualified'
+      });
+    } else {
+      fbq('trackCustom', 'LeadBelowFloor', {
+        content_name: 'Commercial development finance quiz',
+        content_category: 'below_floor'
+      });
+    }
+
+    var html = '';
+    html += '<div class="quiz-step quiz-success">';
+    html += '<h2>Thanks - that\'s with James.</h2>';
+    html += '<p>He reads these himself and comes back with where the deal fits, usually within one business day. If the honest answer is no, you\'ll get that too.</p>';
+    html += '</div>';
+    appEl.innerHTML = html;
+
+    progressLabel.textContent = 'Complete';
+    progressBar.style.width = '100%';
+
+    var stickyBarDone = document.getElementById('sticky-cta');
+    if (stickyBarDone){
+      stickyBarDone.dataset.done = '1';
+      stickyBarDone.hidden = true;
+    }
+
+    appEl.querySelector('h2').setAttribute('tabindex', '-1');
+    appEl.querySelector('h2').focus();
+
+    try{
+      sessionStorage.removeItem(ANSWERS_STORAGE_KEY);
+    }catch(e){}
+  }
+
+  function onSubmitFailure(payload){
+    var submitError = document.getElementById('qf-submit-error');
+    if (!submitError) return;
+
+    var mailBody = 'Financing: ' + payload.financing + '\n' +
+      'Amount: ' + payload.amount + '\n' +
+      'DA status: ' + payload.da_status + '\n' +
+      'Settle timing: ' + payload.settle_timing + '\n' +
+      'Experience: ' + payload.experience + '\n' +
+      'Site location: ' + payload.site_location + '\n' +
+      'Builder status: ' + payload.builder_status + '\n' +
+      'Name: ' + payload.name + '\n' +
+      'Email: ' + payload.email + '\n' +
+      'Phone: ' + payload.phone + '\n' +
+      'Notes: ' + payload.notes;
+
+    var mailtoHref = 'mailto:' + encodeURIComponent(CONTACT_EMAIL) +
+      '?subject=' + encodeURIComponent(payload.subject) +
+      '&body=' + encodeURIComponent(mailBody);
+
+    submitError.innerHTML = 'Something went wrong sending that through. Your answers are not lost - ' +
+      '<a href="' + mailtoHref + '">email them to James directly</a> and he will pick it up from there.';
+    submitError.classList.add('show');
+    submitError.setAttribute('tabindex', '-1');
+    submitError.focus();
+  }
+
+  /* ============================================================
+     Init
+     ============================================================ */
+  renderQuestionStep(currentStep);
+
+  // If the visitor arrives via a deep link straight to #quiz, make sure
+  // the first question sits at the top of the viewport once fonts/layout
+  // settle, rather than mid-scroll from a fragment jump that landed early.
+  if (window.location.hash === '#quiz'){
+    window.setTimeout(function(){
+      var quizSection = document.getElementById('quiz');
+      if (quizSection){
+        quizSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }
+    }, 0);
+  }
+
+  // Sticky mobile CTA: visible only while the quiz is off screen, and
+  // never again after a successful submission.
+  var stickyCta = document.getElementById('sticky-cta');
+  var stickyTarget = document.getElementById('quiz');
+  if (stickyCta && stickyTarget && 'IntersectionObserver' in window){
+    var stickyObserver = new IntersectionObserver(function(entries){
+      if (stickyCta.dataset.done === '1'){
+        stickyCta.hidden = true;
+        return;
+      }
+      stickyCta.hidden = entries[0].isIntersecting;
+    }, { threshold: 0.1 });
+    stickyObserver.observe(stickyTarget);
+  }
+
+})();
+</script>
+
+</body>
+</html>
