@@ -907,7 +907,8 @@
   /* ============================================================
      Configuration - client-supplied placeholders
      ============================================================ */
-  var FORM_ENDPOINT = "[client to provide - form service endpoint]";
+  var FORM_ENDPOINT = "https://api.web3forms.com/submit";
+  var WEB3FORMS_ACCESS_KEY = "6c66eaa6-dfec-4394-a07e-a9e6f0b2f736";
   var CONTACT_EMAIL = "james.obrien@jgolending.com.au";
   // META_PIXEL_ID is declared in the <head> pixel block above.
 
@@ -1216,6 +1217,9 @@
     var amount = answers.amount || '';
     var da = answers.da || '';
     return {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: 'Development finance enquiry - ' + amount + ' - DA: ' + da,
+      from_name: 'JGO Development Finance quiz',
       financing: answers.financing || '',
       amount: amount,
       da_status: da,
@@ -1234,8 +1238,7 @@
       utm_term: utmData.utm_term || '',
       fbclid: utmData.fbclid || '',
       page_url: window.location.href,
-      timestamp: new Date().toISOString(),
-      _subject: 'Development finance enquiry - ' + amount + ' - DA: ' + da
+      timestamp: new Date().toISOString()
     };
   }
 
@@ -1257,9 +1260,14 @@
       },
       body: JSON.stringify(payload)
     }).then(function(response){
+      if (!response || !response.ok){
+        throw new Error('non-2xx response');
+      }
+      return response.json();
+    }).then(function(result){
       loadingEl.classList.remove('show');
       submitBtn.disabled = false;
-      if (response && response.ok){
+      if (result && result.success){
         onSubmitSuccess(payload);
       } else {
         onSubmitFailure(payload);
@@ -1337,7 +1345,7 @@
       'Notes: ' + payload.notes;
 
     var mailtoHref = 'mailto:' + encodeURIComponent(CONTACT_EMAIL) +
-      '?subject=' + encodeURIComponent(payload._subject) +
+      '?subject=' + encodeURIComponent(payload.subject) +
       '&body=' + encodeURIComponent(mailBody);
 
     submitError.innerHTML = 'Something went wrong sending that through. Your answers are not lost - ' +
