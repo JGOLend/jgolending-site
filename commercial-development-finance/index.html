@@ -28,7 +28,7 @@
   window.fbq.loaded = true;
   window.fbq.version = '2.0';
 
-  var META_PIXEL_ID = "[client to provide - Meta Pixel ID]";
+  var META_PIXEL_ID = "1427947952531869";
   var PIXEL_CONFIGURED = META_PIXEL_ID.indexOf('[') !== 0;
 
   if (PIXEL_CONFIGURED) {
@@ -46,6 +46,12 @@
      anywhere. Replace META_PIXEL_ID above and this block activates with
      no other code changes. */
 </script>
+<!-- Noscript fallback for the base pixel. This ID is static markup and
+     cannot read the META_PIXEL_ID JS constant above - if the pixel ID
+     ever changes, update it in both places. -->
+<noscript><img height="1" width="1" style="display:none" alt=""
+  src="https://www.facebook.com/tr?id=1427947952531869&ev=PageView&noscript=1"
+/></noscript>
 <!-- End Meta Pixel base code -->
 
 <style>
