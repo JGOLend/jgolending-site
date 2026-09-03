@@ -1226,6 +1226,13 @@
     submitQuiz();
   }
 
+  function generateEventId(){
+    if (window.crypto && typeof window.crypto.randomUUID === 'function'){
+      return window.crypto.randomUUID();
+    }
+    return 'evt-' + Date.now() + '-' + Math.random().toString(36).slice(2, 12);
+  }
+
   function buildPayload(){
     var amount = answers.amount || '';
     var da = answers.da || '';
@@ -1233,6 +1240,7 @@
       access_key: WEB3FORMS_ACCESS_KEY,
       subject: 'Development finance enquiry - ' + amount + ' - DA: ' + da,
       from_name: 'JGO Development Finance quiz',
+      event_id: generateEventId(),
       financing: answers.financing || '',
       amount: amount,
       da_status: da,
@@ -1300,22 +1308,32 @@
     // 2-5 conversions per week this account cannot afford a polluted
     // signal for the optimiser.
     var qualified = payload.amount !== 'Under $3m';
-    // CAPI / eventID note: no Conversions API is in place yet. When it
-    // is added, generate a shared eventID here and pass it as the
-    // third argument to fbq() below, plus send the same eventID with
-    // the matching server-side event, to deduplicate browser + server
-    // events for the same submission.
+    // Fires both browser-side (here) and server-side (POST to /api/lead,
+    // below) using the same event_id, so Meta deduplicates the two into
+    // one conversion. The server-side copy exists because this browser
+    // event fires at the very last moment of the interaction - right as
+    // the visitor is about to close the tab - which is exactly when a
+    // pending network request is most likely to get cut off unfinished.
     if (qualified){
       fbq('track', 'Lead', {
         content_name: 'Commercial development finance quiz',
         content_category: 'qualified'
-      });
+      }, { eventID: payload.event_id });
     } else {
       fbq('trackCustom', 'LeadBelowFloor', {
         content_name: 'Commercial development finance quiz',
         content_category: 'below_floor'
-      });
+      }, { eventID: payload.event_id });
     }
+
+    try {
+      fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        keepalive: true
+      }).catch(function(){});
+    } catch (e) {}
 
     var html = '';
     html += '<div class="quiz-step quiz-success">';
